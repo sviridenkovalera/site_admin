@@ -1,9 +1,19 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404, HttpResponse
 from comment.models import Comment
+from blog.models import BlogRecord
 
 # Create your views here.
 
 def comment (request, comment_id):
 	comment_id = int (comment_id)
-	comments = Comment.objects.filter (comment_id_blog=comment_id)
-	return render_to_response ("comment/comment.html", { "comments" : comments } )
+	comments = Comment.objects.filter (id_blog_id=comment_id)
+	return render_to_response (u'comment/comment.html', { u'comments' : comments } )
+
+def add_comment (request, comment_id):
+	comment = Comment ()
+	comment.id_blog = BlogRecord (id = int (comment_id) )
+	comment.name = request.GET[u'name']
+	comment.comment = request.GET[u'comment']
+	comment.save ()
+	return HttpResponse ("OK")
+
