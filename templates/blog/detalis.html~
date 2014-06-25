@@ -1,5 +1,3 @@
-{% for blog_record in blog_records%}
 <span class = "title">{{blog_record.title}}</span>
 <div class = "blog_content">{{blog_record.content}}</div>
-<hr>
-{% endfor %}
+
