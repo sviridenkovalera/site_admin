@@ -1,0 +1,11 @@
+from django.test import TestCase
+from models.py import BlogRecord
+# Create your tests here.
+
+#add new record
+
+def main ():
+
+
+if __name__ == "__main__":
+	main ()
