@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+		{% if no_blogs %}
+			<div><h1 align = "center" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No blogs</h1></div>
+		{% endif %}
 			{% for blog_record in blog_records %}
 				<!-- Post -->
 				<div class="post">

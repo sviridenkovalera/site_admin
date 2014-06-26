@@ -53,15 +53,15 @@
 
 		        <!-- Logo -->
 			<div id="logo">
-				<a href="index.html"></a>
+				<a href="/"></a>
 			</div>
 
 			<!-- Main Menu -->
 			<div id="menu">
 				<a class="mh" href="#">Home</a>
-				<a class="mt" href="#">Tutuorials</a>
+				<!--a class="mt" href="#">Tutuorials</a>
 				<a class="mw" href="#">Wallpapers</a>
-				<a class="mi" href="#">Inspiration</a>
+				<a class="mi" href="#">Inspiration</a-->
 			</div>
 
 		</div>
@@ -108,32 +108,5 @@
 </body>
 
 <script src = "/static/js/jquery-2.1.1.js" type="text/javascript"></script>
-<script type = "text/javascript">
-	$("#sendbut").click (
-		function ()
-		{
-			var name = $('#name').val ();
-			var comment = $('#comment').val ();	
-			$('#name').val ('');
-			$('#comment').val ('');
-			$.ajax 
-			( 
-				{
-					type: "GET",
-				 	url: $("#send_addr").val (),
-					data: { "name": name, "comment": comment },
-					dataType: "html",
-					success: function ( data )
-					{
-						
-						$("#res_send").html ( data );
-						window.location.reload();
-					}
-				}
-			);
-			return false;
-		}
-		);
-		</script>
-	{% block footer %} {% endblock %}
+{% block footer %} {% endblock %}
 </html>

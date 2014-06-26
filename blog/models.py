@@ -4,5 +4,5 @@ from django.db import models
 class BlogRecord(models.Model):
 	title = models.CharField(max_length=256)
 	content = models.CharField(max_length=2048)
-	date_create = models.DateTimeField('date published')
+	date_create = models.DateTimeField(auto_now=True)
 

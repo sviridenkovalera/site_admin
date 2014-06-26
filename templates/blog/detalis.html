@@ -48,7 +48,12 @@
 		function ()
 		{
 			var name = $('#name').val ();
-			var comment = $('#comment').val ();	
+			var comment = $('#comment').val ();
+			if ( name.length <= 0 || comment.length <= 0 )
+			{
+				window.alert ( 'Filed name or comment is empty!' );
+				return false;
+			}	
 			$('#name').val ('');
 			$('#comment').val ('');
 			$.ajax 

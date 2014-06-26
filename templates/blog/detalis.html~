@@ -44,11 +44,37 @@
 						{
 						
 							$("#load_comment").html ( data );
+		$("#sendbut").click (
+		function ()
+		{
+			var name = $('#name').val ();
+			var comment = $('#comment').val ();	
+			$('#name').val ('');
+			$('#comment').val ('');
+			$.ajax 
+			( 
+				{
+					type: "GET",
+				 	url: $("#send_addr").val (),
+					data: { "name": name, "comment": comment },
+					dataType: "html",
+					success: function ( data )
+					{
+						
+						$("#res_send").html ( data );
+						window.location.reload();
+					}
+				}
+			);
+			return false;
+		}
+		);	
 						}
 					}
 				);
 			}
-		);	
+		);
+	
 	</script>
 {% endblock %}
 
