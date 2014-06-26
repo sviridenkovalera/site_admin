@@ -1,0 +1,16 @@
+{% for blog_record in blog_records%}
+<span class = "title"><a href="/blog/details/{{blog_record.id}}/">{{blog_record.title}}</a></span>
+<div class = "blog_content">i</div>
+<hr>
+{% endfor %}
+{% if page_id %}
+<div>
+	<a href="/blog/{{preiv_page}}/">Preiv page</a>
+</div>
+{% endif %}
+<span></span>
+{% if next_page %}
+<div>
+	<a href="/blog/{{next_page}}/">Next page</a>
+</div>
+{% endif %}

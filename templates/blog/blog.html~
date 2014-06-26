@@ -1,16 +1,61 @@
-{% for blog_record in blog_records%}
-<span class = "title"><a href="/blog/details/{{blog_record.id}}/">{{blog_record.title}}</a></span>
-<div class = "blog_content">{{blog_record.content}}</div>
-<hr>
-{% endfor %}
-{% if page_id %}
-<div>
-	<a href="/blog/{{preiv_page}}/">Preiv page</a>
-</div>
-{% endif %}
+{% extends "base.html" %}
+{% block content %}
+			{% for blog_record in blog_records %}
+				<!-- Post -->
+				<div class="post">
 
-{% if next_page %}
-<div>
-	<a href="/blog/{{next_page}}/">Next page</a>
-</div>
-{% endif %}
+					<!-- Post Details -->
+					<div class="post_inf">
+
+						<span>{{ blog_record.date_create }}</span><br />
+						<!--span class="posn">Orchida</span><br /-->
+						<!--a class="posc" href="article.html">3 Comments</a-->
+
+					</div>
+
+					<!-- Post Title - Permalink -->
+					<h1>
+						<a href="/blog/details/{{blog_record.id}}/">{{blog_record.title|truncatechars:20}}</a>
+					</h1>
+
+					<!-- Post Content -->
+					<!--a class="pic_lnk" href="article.html"><img src="images/post_pic1.jpg" alt="post_pic1" /></a-->
+
+					<p>{{blog_record.content|truncatechars:256}}</p>
+
+				</div>
+				{% endfor %}
+
+		
+				<!-- Pagination -->	
+				<div class="pagination">				
+			
+					{% if page_id %}<a style = "width: 100px;" class="prev" href="/blog/{{preiv_page}}/">&laquo;Previous</a>{% endif %}
+					{% if next_page %}<a class="next" href="/blog/{{next_page}}/">Next&raquo;</a>{% endif %}
+
+				</div>
+				<div id = "load_comment"></div>				
+{% endblock %}
+
+{%block footer%}
+	<script type = "text/javascript">
+		$('#load_comment').ready 
+		(
+		 	$.ajax 
+			( 
+				{
+					type: "GET",
+					url: "/comment/{{ blog_record.id }}/",
+					dataType: "html",
+					success: function ( data )
+					{
+						
+						$("#res_send").html ( data );
+					}
+				}
+			);
+		);	
+	</script>
+{% endblock %}
+
+

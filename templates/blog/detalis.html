@@ -1,8 +1,81 @@
-<span class = "title">{{blog_record.title}}</span>
-<span class = "date_create">{{blog_record.date_create}}</span>
-<div class = "blog_content">{{blog_record.content}}</div>
-<div>Comments</div>
-<iframe src="/comment/{{blog_record.id}}/" style = "height: 100%; border: 0px; width: 100%;">
-	Not Work :(
-</iframe>
+{% extends "base.html" %}
+
+{%block content %}
+				<!-- Post -->
+				<div class="post">
+
+					<!-- Post Details -->
+					<div class="post_inf">
+
+						<span>{{blog_record.date_create}}</span><br />
+					</div>
+
+					<!-- Post Title - Permalink -->
+					<h1>
+						<a href="#">{{blog_record.title}}c</a>
+					</h1>
+
+
+					<p>{{blog_record.content}}</p>
+
+				</div>
+
+				<!--h2>
+					<a href="#">3 comments</a>
+				</h2--->
+
+
+	<div id = "load_comment"></div>				
+{% endblock %}
+
+{%block footer%}
+	<script type = "text/javascript">
+		$( document ).ready
+		(
+		 	function ()
+			{
+		 		$.ajax 
+				( 
+					{
+						type: "GET",
+						url: "/comment/{{ blog_record.id }}/",
+						dataType: "html",
+						success: function ( data )
+						{
+						
+							$("#load_comment").html ( data );
+		$("#sendbut").click (
+		function ()
+		{
+			var name = $('#name').val ();
+			var comment = $('#comment').val ();	
+			$('#name').val ('');
+			$('#comment').val ('');
+			$.ajax 
+			( 
+				{
+					type: "GET",
+				 	url: $("#send_addr").val (),
+					data: { "name": name, "comment": comment },
+					dataType: "html",
+					success: function ( data )
+					{
+						
+						$("#res_send").html ( data );
+						window.location.reload();
+					}
+				}
+			);
+			return false;
+		}
+		);	
+						}
+					}
+				);
+			}
+		);
+	
+	</script>
+{% endblock %}
+
 

@@ -1,13 +1,39 @@
-{% for comment in comments %}
-<div class = "comment_name">{{comment.name}}</div>
-<div class = "comment_comment">{{comment.comment}}</div>
-<hr>
-{% endfor %}
-<div>
-	<form action= "/comment/{{id_blog}}/add/"  method='get'>
-		{% csrf_token %}
-		<input id="name" name="name">
-		<input id="comment" name="comment">	
-		<input type="submit">
-	</form>
-</div>
+
+
+{%block content %}
+			{% for comment in comments %}
+					<!-- Comment -->
+					<div class="comment">
+
+						<div class="comm_hdr">
+							<p><span>{{comment.name}}</span></p>
+						</div>
+
+					
+					
+						<p class="comm_txt">
+							{{comment.comment}}i
+						</p>
+
+					</div>
+			{% endfor %}
+
+				<h2>Post your comments</h2>
+			
+				<!-- Comment Form -->			
+				<!--form action= "/comment/{{id_blog}}/add/"  method='post'-->
+				<div id = "res_send"></div>
+					{% csrf_token %}
+					<input style = "display: none" id = "send_addr" value = "/comment/{{id_blog}}/add/">
+                                        <p><input type="text" size="22" tabindex="1" id="name"/><label>Name</label></p>
+                                        <p>
+                                                <textarea cols="65" rows="10" tabindex="4" id="comment"></textarea>
+                                        </p>
+                                        <p>
+						<button id = "sendbut">Post comment</button>
+                                        </p>
+
+				<!--/form-->
+
+			</div>
+{% endblock %}
