@@ -4,7 +4,7 @@
 <hr>
 {% endfor %}
 <div>
-	<form action= "/comment/{{ id_blog }}/add  method='get'>
+	<form action= "/comment/{{id_blog}}add/"  method='get'>
 		{% csrf_token %}
 		<input id="name" name="name">
 		<input id="comment" name="comment">	

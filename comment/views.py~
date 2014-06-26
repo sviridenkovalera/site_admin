@@ -7,7 +7,7 @@ from blog.models import BlogRecord
 def comment (request, comment_id):
 	comment_id = int (comment_id)
 	comments = Comment.objects.filter (id_blog_id=comment_id)
-	return render_to_response (u'comment/comment.html', { u'comments' : comments } )
+	return render_to_response (u'comment/comment.html', { u'comments' : comments, u'id_blog': int (comments[0].id_blog_id) } )
 
 def add_comment (request, comment_id):
 	comment = Comment ()
@@ -15,5 +15,5 @@ def add_comment (request, comment_id):
 	comment.name = request.GET[u'name']
 	comment.comment = request.GET[u'comment']
 	comment.save ()
-	return HttpResponse ("OK")
+	return HttpResponse ('<div style = "color: green">Comment add!</div>')
 
